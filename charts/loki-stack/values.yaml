@@ -21,8 +21,8 @@ fluent-bit:
       [OUTPUT]
           name               loki
           match              *
-          host               {{(include "loki.serviceName" .)}}
-          port               {{ .Values.loki.service.port }}
+          host               {{ include \"loki.serviceName\" . }}
+          port               {{ include \"loki.service.port\" . }}
 
 grafana:
   enabled: false
