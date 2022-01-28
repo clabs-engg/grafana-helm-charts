@@ -21,8 +21,8 @@ fluent-bit:
       [OUTPUT]
           name               loki
           match              *
-          host               "{{ include \"loki.serviceName\" . }}"
-          port               "{{ include \"loki.service.port\" . }}"
+          host               loki.monitoring.svc.cluster.local
+          port               3100
 
 grafana:
   enabled: false
