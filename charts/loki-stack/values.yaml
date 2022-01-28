@@ -21,7 +21,7 @@ fluent-bit:
       [OUTPUT]
           name               loki
           match              *
-          host               loki.monitoring.svc.cluster.local
+          host               monitoring-loki.monitoring.svc.cluster.local
           port               3100
 
 grafana:
