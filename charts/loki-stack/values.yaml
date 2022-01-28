@@ -11,7 +11,7 @@ fluent-bit:
       [SERVICE]
           Flush 1
           Daemon Off
-          Log_Level info
+          Log_Level error
           Parsers_File parsers.conf
           Parsers_File custom_parsers.conf
           HTTP_Server On
@@ -21,9 +21,13 @@ fluent-bit:
       [OUTPUT]
           name               loki
           match              *
-          host               {{(include "loki.serviceName" .)}}
-          port               {{ .Values.loki.service.port }}
+          host               monitoring-loki.monitoring.svc.cluster.local
+          port               3100
+          auto_kubernetes_labels on
+          labels job=fluentbit, namespace=$kubernetes['namespace_name']
+          line_format json
 
+  logLevel: error
 grafana:
   enabled: false
   sidecar:
