@@ -24,7 +24,7 @@ fluent-bit:
           host               monitoring-loki.monitoring.svc.cluster.local
           port               3100
           auto_kubernetes_labels on
-          labels job=fluentbit, namespace=$kubernetes['namespace_name'], pod_name=$kubernetes['pod_name'], container_image=$kubernetes['container_image']
+          labels job=fluentbit, namespace=$kubernetes['namespace_name'], pod_name=$kubernetes['pod_name'], container_image=$kubernetes['container_image'], container_name=$kubernetes['container_name']
           line_format json
 
   logLevel: error
