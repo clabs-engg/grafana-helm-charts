@@ -13,11 +13,11 @@ dependencies:
   version: "~0.19.19"
 - name: "grafana"
   condition: grafana.enabled
-  version: "~6.21.8"
+  version: "~6.23"
   repository:  "https://grafana.github.io/helm-charts"
 - name: "prometheus"
   condition: prometheus.enabled
-  version: "~15.3.0"
+  version: "~15.5.2"
   repository:  "https://prometheus-community.github.io/helm-charts"
 - name: "filebeat"
   condition: filebeat.enabled
