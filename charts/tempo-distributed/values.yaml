@@ -29,6 +29,14 @@ tempo:
     timeoutSeconds: 1
   # -- Global labels for all tempo pods
   podLabels: {}
+  # --- SecurityContext holds pod-level security attributes and common container settings
+  securityContext: {}
+  #  capabilities:
+  #    drop:
+  #    - ALL
+  #  readOnlyRootFilesystem: true
+  #  runAsNonRoot: true
+  #  runAsUser: 1000
 
 serviceAccount:
   # -- Specifies whether a ServiceAccount should be created
@@ -40,6 +48,12 @@ serviceAccount:
   imagePullSecrets: []
   # -- Annotations for the service account
   annotations: {}
+
+rbac:
+  # -- Specifies whether RBAC manifests should be created
+  create: false
+  # -- Specifies whether a PodSecurityPolicy should be created
+  pspEnabled: false
 
 # Configuration for the ingester
 ingester:
