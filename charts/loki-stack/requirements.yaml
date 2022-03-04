@@ -10,14 +10,14 @@ dependencies:
 - name: "fluent-bit"
   condition: fluent-bit.enabled
   repository: "https://fluent.github.io/helm-charts"
-  version: "~0.19.19"
+  version: "~0.19.20"
 - name: "grafana"
   condition: grafana.enabled
-  version: "~6.23"
+  version: "~6.23.1"
   repository:  "https://grafana.github.io/helm-charts"
 - name: "prometheus"
   condition: prometheus.enabled
-  version: "~15.5.2"
+  version: "~15.5.3"
   repository:  "https://prometheus-community.github.io/helm-charts"
 - name: "filebeat"
   condition: filebeat.enabled
