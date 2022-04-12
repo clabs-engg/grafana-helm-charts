@@ -99,6 +99,7 @@ loki:
       reject_old_samples: true
       reject_old_samples_max_age: 168h
       max_cache_freshness_per_query: 10m
+      split_queries_by_interval: 15m
 
     {{- if .Values.loki.schemaConfig}}
     schema_config:
@@ -123,7 +124,6 @@ loki:
     query_range:
       align_queries_with_step: true
       max_retries: 5
-      split_queries_by_interval: 15m
       cache_results: true
       results_cache:
         cache:
@@ -222,6 +222,9 @@ serviceMonitor:
   # -- ServiceMonitor relabel configs to apply to samples before scraping
   # https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#relabelconfig
   relabelings: []
+  # -- ServiceMonitor metric relabel configs to apply to samples before ingestion
+  # https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#endpoint
+  metricRelabelings: []
   # -- ServiceMonitor will use http by default, but you can pick https as well
   scheme: http
   # -- ServiceMonitor will use these tlsConfig settings to make the health check requests
