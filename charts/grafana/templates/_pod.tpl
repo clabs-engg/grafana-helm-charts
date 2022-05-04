@@ -149,6 +149,14 @@ initContainers:
       - name: SKIP_TLS_VERIFY
         value: "{{ .Values.sidecar.skipTlsVerify }}"
       {{- end }}
+{{- if .Values.sidecar.livenessProbe }}
+    livenessProbe:
+{{ toYaml .Values.livenessProbe | indent 6 }}
+{{- end }}
+{{- if .Values.sidecar.readinessProbe }}
+    readinessProbe:
+{{ toYaml .Values.readinessProbe | indent 6 }}
+{{- end }}
     resources:
 {{ toYaml .Values.sidecar.resources | indent 6 }}
 {{- if .Values.sidecar.securityContext }}
@@ -221,6 +229,14 @@ containers:
       - name: WATCH_CLIENT_TIMEOUT
         value: "{{ .Values.sidecar.dashboards.watchClientTimeout }}"
       {{- end }}
+{{- if .Values.sidecar.livenessProbe }}
+    livenessProbe:
+{{ toYaml .Values.livenessProbe | indent 6 }}
+{{- end }}
+{{- if .Values.sidecar.readinessProbe }}
+    readinessProbe:
+{{ toYaml .Values.readinessProbe | indent 6 }}
+{{- end }}
     resources:
 {{ toYaml .Values.sidecar.resources | indent 6 }}
 {{- if .Values.sidecar.securityContext }}
@@ -287,6 +303,14 @@ containers:
       - name: REQ_METHOD
         value: POST
       {{- end }}
+{{- if .Values.sidecar.livenessProbe }}
+    livenessProbe:
+{{ toYaml .Values.livenessProbe | indent 6 }}
+{{- end }}
+{{- if .Values.sidecar.readinessProbe }}
+    readinessProbe:
+{{ toYaml .Values.readinessProbe | indent 6 }}
+{{- end }}
     resources:
 {{ toYaml .Values.sidecar.resources | indent 6 }}
 {{- if .Values.sidecar.securityContext }}
@@ -350,6 +374,14 @@ containers:
       - name: REQ_METHOD
         value: POST
       {{- end }}
+{{- if .Values.sidecar.livenessProbe }}
+    livenessProbe:
+{{ toYaml .Values.livenessProbe | indent 6 }}
+{{- end }}
+{{- if .Values.sidecar.readinessProbe }}
+    readinessProbe:
+{{ toYaml .Values.readinessProbe | indent 6 }}
+{{- end }}
     resources:
 {{ toYaml .Values.sidecar.resources | indent 6 }}
 {{- if .Values.sidecar.securityContext }}
@@ -561,6 +593,9 @@ containers:
 {{ toYaml .Values.livenessProbe | indent 6 }}
     readinessProbe:
 {{ toYaml .Values.readinessProbe | indent 6 }}
+{{- if .Values.lifecycleHooks }}
+    lifecycle: {{ tpl (.Values.lifecycleHooks | toYaml) . | nindent 6 }}
+{{- end }}
     resources:
 {{ toYaml .Values.resources | indent 6 }}
 {{- with .Values.extraContainers }}
@@ -634,7 +669,12 @@ volumes:
 {{- end -}}
 {{- if .Values.sidecar.dashboards.enabled }}
   - name: sc-dashboard-volume
+{{- if .Values.sidecar.dashboards.sizeLimit }}
+    emptyDir:
+      sizeLimit: {{ .Values.sidecar.dashboards.sizeLimit }}
+{{- else }}
     emptyDir: {}
+{{- end -}}
 {{- if .Values.sidecar.dashboards.SCProvider }}
   - name: sc-dashboard-provider
     configMap:
@@ -643,15 +683,30 @@ volumes:
 {{- end }}
 {{- if .Values.sidecar.datasources.enabled }}
   - name: sc-datasources-volume
+{{- if .Values.sidecar.datasources.sizeLimit }}
+    emptyDir:
+      sizeLimit: {{ .Values.sidecar.datasources.sizeLimit }}
+{{- else }}
     emptyDir: {}
+{{- end -}}
 {{- end -}}
 {{- if .Values.sidecar.plugins.enabled }}
   - name: sc-plugins-volume
+{{- if .Values.sidecar.plugins.sizeLimit }}
+    emptyDir:
+      sizeLimit: {{ .Values.sidecar.plugins.sizeLimit }}
+{{- else }}
     emptyDir: {}
+{{- end -}}
 {{- end -}}
 {{- if .Values.sidecar.notifiers.enabled }}
   - name: sc-notifiers-volume
+{{- if .Values.sidecar.notifiers.sizeLimit }}
+    emptyDir:
+      sizeLimit: {{ .Values.sidecar.notifiers.sizeLimit }}
+{{- else }}
     emptyDir: {}
+{{- end -}}
 {{- end -}}
 {{- range .Values.extraSecretMounts }}
 {{- if .secretName }}

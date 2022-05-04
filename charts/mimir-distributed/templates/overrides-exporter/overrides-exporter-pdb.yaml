@@ -1,5 +1,6 @@
+{{- if .Values.overrides_exporter.enabled -}}
 {{- if .Values.overrides_exporter.podDisruptionBudget -}}
-apiVersion: policy/v1beta1
+apiVersion: {{ include "mimir.podDisruptionBudget.apiVersion" . }}
 kind: PodDisruptionBudget
 metadata:
   name: {{ include "mimir.resourceName" (dict "ctx" . "component" "overrides-exporter") }}
@@ -10,4 +11,5 @@ spec:
     matchLabels:
       {{- include "mimir.selectorLabels" (dict "ctx" . "component" "overrides-exporter") | nindent 6 }}
 {{ toYaml .Values.overrides_exporter.podDisruptionBudget | indent 2 }}
+{{- end -}}
 {{- end -}}

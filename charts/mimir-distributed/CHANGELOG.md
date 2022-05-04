@@ -11,6 +11,52 @@ Entries should be ordered as follows:
 
 Entries should include a reference to the Pull Request that introduced the change.
 
+## 2.0.13
+
+* [ENHANCEMENT] Removed `rbac.create` option. #1317
+
+## 2.0.12
+
+* [ENHANCEMENT] Add memberlist named port to container spec. #1311
+
+## 2.0.11
+
+* [ENHANCEMENT] Turn `ruler` and `override-exporter` into optional components. #1304
+
+## 2.0.10
+
+* [ENHANCEMENT] Reorder some values for consistency. #1302
+* [BUGFIX] Add missing `admin_api.env`, `gateway.env` and `overrides_exporter.env` values. #1302
+* [BUGFIX] Remove `<service>.extraPorts` from values as it has no effect. #1302
+
+## 2.0.9
+
+* [ENHANCEMENT] Disable gateway ingress by default. #1303
+* [BUGFIX] Fix null port at gateway ingress definition. #1303
+
+## 2.0.8
+
+* [ENHANCEMENT] Add validation if `activity_tracker.filepath` is missing in `mimir.config`. #1290
+* [ENHANCEMENT] Add validation if `server.http_listen_port` or `server.grpc_listen_port` is set in `mimir.config`. #1290
+* [BUGFIX] Add missing empty array definition for `extraVolumeMounts` in admin_api, gateway and override-exporter. #1290
+* [BUGFIX] Fix wrong template called in nginx helper. #1290
+
+## 2.0.7
+
+* [ENHANCEMENT] Add option to modify the port for the GEM gateway service. #1270
+
+## 2.0.6
+
+* [ENHANCEMENT] Add option for an ingress on GEM gateway. #1266
+
+## 2.0.5
+
+* [BUGFIX] Use new component name system for gateway ingress. This regression has been introduced with #1203. #1260
+
+## 2.0.4
+
+* [ENHANCEMENT] Determine PodDisruptionBudget APIVersion based on running version of k8s #1229
+
 ## 2.0.3
 
 * [ENHANCEMENT] Update README.md with helm-docs version 1.8.1 instead of old 1.4.0. #1230
