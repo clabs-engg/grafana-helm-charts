@@ -4,7 +4,10 @@ loki:
   memberlist: null
   compactor:
     retention_enabled: true
-
+  ingestor:
+    lifecycler:
+      ring:
+        store: inmemory
 
 promtail:
   enabled: true
