@@ -2,6 +2,9 @@ loki:
   enabled: true
   isDefault: true
   memberlist: null
+  compactor:
+    retention_enabled: true
+
 
 promtail:
   enabled: true
