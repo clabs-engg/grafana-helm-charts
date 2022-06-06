@@ -1,13 +1,15 @@
 loki:
   enabled: true
   isDefault: true
-  memberlist: null
+  config:
+    memberlist: null
+    ingester:
+      lifecycler:
+        ring:
+          kvstore:
+            store: inmemory
   compactor:
     retention_enabled: true
-  ingestor:
-    lifecycler:
-      ring:
-        store: inmemory
 
 promtail:
   enabled: true
