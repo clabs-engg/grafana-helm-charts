@@ -1,7 +1,8 @@
 loki:
   enabled: true
   isDefault: true
-  memberlist: null
+  config:
+    memberlist: null
   compactor:
     retention_enabled: true
   ingestor:
