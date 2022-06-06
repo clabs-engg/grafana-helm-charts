@@ -1,6 +1,7 @@
 loki:
   enabled: true
   isDefault: true
+  memberlist: null
 
 promtail:
   enabled: true
