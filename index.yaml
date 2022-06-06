@@ -1869,6 +1869,32 @@ entries:
   grafana:
   - apiVersion: v2
     appVersion: 8.5.3
+    created: "2022-06-06T14:22:14.163247483Z"
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: d7fc96fa0a8843e3c6671116de84fb1141fe1495bb9a6e54da231084d1169d92
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    type: application
+    urls:
+    - https://github.com/clabs-engg/grafana-helm-charts/releases/download/grafana-6.29.6/grafana-6.29.6.tgz
+    version: 6.29.6
+  - apiVersion: v2
+    appVersion: 8.5.3
     created: "2022-05-31T10:45:48.51499308Z"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: afbf9ad929bdc99ea60448de8562cb14b24dbcdb1083e310d2c2b58f2fe68288
@@ -10987,6 +11013,23 @@ entries:
   loki:
   - apiVersion: v1
     appVersion: v2.5.0
+    created: "2022-06-06T14:22:14.307883158Z"
+    description: 'Loki: like Prometheus, but for logs.'
+    digest: a046457d5243b7478d5beb5a114828352e24f7a7f8fcaa67905fda6f9ebf2557
+    home: https://grafana.com/loki
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    kubeVersion: ^1.10.0-0
+    maintainers:
+    - email: lokiproject@googlegroups.com
+      name: Loki Maintainers
+    name: loki
+    sources:
+    - https://github.com/grafana/loki
+    urls:
+    - https://github.com/clabs-engg/grafana-helm-charts/releases/download/loki-2.12.0/loki-2.12.0.tgz
+    version: 2.12.0
+  - apiVersion: v1
+    appVersion: v2.5.0
     created: "2022-05-04T05:32:29.386987705Z"
     description: 'Loki: like Prometheus, but for logs.'
     digest: 4dcc6bb5ea8b0ac188593247cdb2d574eb11f8611fed8ede44186eaeef2be571
@@ -13471,6 +13514,30 @@ entries:
   loki-simple-scalable:
   - apiVersion: v2
     appVersion: 2.5.0
+    created: "2022-06-06T14:22:14.498892643Z"
+    dependencies:
+    - alias: minio
+      condition: minio.enabled
+      name: minio
+      repository: https://helm.min.io/
+      version: 8.0.9
+    description: Helm chart for Grafana Loki in simple, scalable mode
+    digest: 69cb0fe38ed1199ecceb661213e9d1a1eaab7b143a44be7316db36bdde0bb54c
+    home: https://grafana.github.io/helm-charts
+    icon: https://grafana.com/docs/loki/latest/logo_and_name.png
+    maintainers:
+    - name: trevorwhitney
+    name: loki-simple-scalable
+    sources:
+    - https://github.com/grafana/loki
+    - https://grafana.com/oss/loki/
+    - https://grafana.com/docs/loki/latest/
+    type: application
+    urls:
+    - https://github.com/clabs-engg/grafana-helm-charts/releases/download/loki-simple-scalable-1.2.0/loki-simple-scalable-1.2.0.tgz
+    version: 1.2.0
+  - apiVersion: v2
+    appVersion: 2.5.0
     created: "2022-05-31T10:45:48.644332198Z"
     dependencies:
     - alias: minio
@@ -13590,6 +13657,52 @@ entries:
     - https://github.com/grafana/helm-charts/releases/download/loki-simple-scalable-0.1.0/loki-simple-scalable-0.1.0.tgz
     version: 0.1.0
   loki-stack:
+  - apiVersion: v1
+    appVersion: v2.1.0
+    created: "2022-06-06T14:22:14.672679575Z"
+    dependencies:
+    - condition: loki.enabled
+      name: loki
+      repository: https://grafana.github.io/helm-charts
+      version: ~2.12.0
+    - condition: promtail.enabled
+      name: promtail
+      repository: https://grafana.github.io/helm-charts
+      version: ~5.0.0
+    - condition: fluent-bit.enabled
+      name: fluent-bit
+      repository: https://fluent.github.io/helm-charts
+      version: ~0.20.1
+    - condition: grafana.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: ~6.29.6
+    - condition: prometheus.enabled
+      name: prometheus
+      repository: https://prometheus-community.github.io/helm-charts
+      version: ~15.9.1
+    - condition: filebeat.enabled
+      name: filebeat
+      repository: https://helm.elastic.co
+      version: ~7.16.3
+    - condition: logstash.enabled
+      name: logstash
+      repository: https://helm.elastic.co
+      version: ~7.16.3
+    description: 'Loki: like Prometheus, but for logs.'
+    digest: 9adb2c7547ca2ffb709b58b7d86bd1d578fd15479442b36b13eba35c0428ebb5
+    home: https://grafana.com/loki
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    kubeVersion: ^1.10.0-0
+    maintainers:
+    - email: lokiproject@googlegroups.com
+      name: Loki Maintainers
+    name: loki-stack
+    sources:
+    - https://github.com/grafana/loki
+    urls:
+    - https://github.com/clabs-engg/grafana-helm-charts/releases/download/loki-stack-2.8.4/loki-stack-2.8.4.tgz
+    version: 2.8.4
   - apiVersion: v1
     appVersion: v2.1.0
     created: "2022-05-31T10:45:48.791990274Z"
@@ -18291,6 +18404,27 @@ entries:
   promtail:
   - apiVersion: v2
     appVersion: 2.5.0
+    created: "2022-06-06T14:22:14.836232718Z"
+    description: Promtail is an agent which ships the contents of local logs to a
+      Loki instance
+    digest: 2c6f5fd7c04720486c99ca8ef1f82f2e2ed5119c67236df7a787108f56bea8b1
+    home: https://grafana.com/loki
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    maintainers:
+    - email: lokiproject@googlegroups.com
+      name: Loki Maintainers
+    - name: unguiculus
+    name: promtail
+    sources:
+    - https://github.com/grafana/loki
+    - https://grafana.com/oss/loki/
+    - https://grafana.com/docs/loki/latest/
+    type: application
+    urls:
+    - https://github.com/clabs-engg/grafana-helm-charts/releases/download/promtail-5.0.0/promtail-5.0.0.tgz
+    version: 5.0.0
+  - apiVersion: v2
+    appVersion: 2.5.0
     created: "2022-05-31T10:45:48.912756318Z"
     description: Promtail is an agent which ships the contents of local logs to a
       Loki instance
@@ -21591,4 +21725,4 @@ entries:
     urls:
     - https://github.com/grafana/helm-charts/releases/download/tempo-vulture-0.1.0/tempo-vulture-0.1.0.tgz
     version: 0.1.0
-generated: "2022-05-31T10:45:49.202461122Z"
+generated: "2022-06-06T14:22:14.845777902Z"
