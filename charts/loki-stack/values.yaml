@@ -8,8 +8,8 @@ loki:
         ring:
           kvstore:
             store: inmemory
-  compactor:
-    retention_enabled: true
+    compactor:
+      retention_enabled: true
 
 promtail:
   enabled: true
